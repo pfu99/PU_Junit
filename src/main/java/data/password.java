@@ -2,7 +2,7 @@ package data;
 
 import exceptions.BadFormatPasswordException;
 
-final public class Password {
+public final class Password {
 
     private final String password;
 
