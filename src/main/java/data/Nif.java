@@ -2,9 +2,7 @@ package data;
 
 import exceptions.BadFormatNifException;
 
-/**
- * Essential data classes
- */
+
 final public class Nif {
     private static final String NIF_REGEX = "^[0-9]{8}[A-Za-z]$";
     // The tax identification number in the Spanish state.

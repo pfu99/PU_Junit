@@ -6,7 +6,7 @@ public class CardPayment {
     private final Nif nif; // The nif of the user
     private final Date date; // The date of the operation
     private final BigDecimal import; // The import of the payment
-    public CardPayment (Nif nif, BigDecimel imp) { . . . }
+    public CardPayment (Nif nif, BigDecimal imp) { . . . }
 // Initializes attributes
  (. . .) // the getters
     @Override
