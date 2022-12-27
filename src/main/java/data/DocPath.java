@@ -1,32 +1,26 @@
 package data;
 
-public final class DocPath {
+import exceptions.BadPathException;
 
+final public class DocPath {
     private final String path;
-
-    public DocPath(String path) {
-        if (path == null) throw new NullPointerException("Document Path shouldn't be null");
-        this.path = path;
+    public DocPath (String p) throws BadPathException {
+        if (p == null) throw new NullPointerException("Path is null.");
+        // Add validation to check if the file exists or if the path is a valid directory
+        path = p;
     }
-
-    public String getPath() {
-        return path;
-    }
-
+    public String getPath () { return path; }
     @Override
-    public boolean equals(Object o) {
+    public boolean equals (Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DocPath docPath = (DocPath) o;
-        return path.equals(docPath.path);
-    }
-
-    @Override
-    public int hashCode() {
-        return path.hashCode();
+        DocPath niff = (DocPath) o;
+        return path.equals(niff.path);
     }
     @Override
-    public String toString() {
-        return path;
+    public int hashCode () { return path.hashCode(); }
+    @Override
+    public String toString () {
+        return "DocPath{path='" + path + "', hashCode=" + hashCode() + "}";
     }
 }
