@@ -18,10 +18,6 @@ final public class Nif {
     public String getNif () { return nif; }
     @Override
     public boolean equals (Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Nif niff = (Nif) o;
-        return nif.equals(niff.nif);
     }
     @Override
     public int hashCode () { return nif.hashCode(); }

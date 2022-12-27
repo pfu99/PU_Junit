@@ -2,7 +2,7 @@ package data;
 
 import exceptions.BadFormatPasswordException;
 
-public final class Password {
+final public class Password {
 
     private final String password;
 
@@ -10,7 +10,7 @@ public final class Password {
         if (password == null)
             throw new NullPointerException("Password shouldn't reference to null");
         if (password.length() < 8 || password.length() > 20)
-            throw new BadFormatPasswordException("Password must be 8-20 characters long");
+        throw new BadFormatPasswordException("Password must be 8-20 characters long");
         this.password = password;
     }
 
@@ -29,7 +29,7 @@ public final class Password {
     @Override
     public String toString() {
         return "Password{" + "password='" + password + '\'' + '}';
-    }
+}
 
     @Override
     public int hashCode() {

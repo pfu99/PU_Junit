@@ -2,7 +2,7 @@ package data;
 
 import exceptions.BadFormatGoalException;
 
-final public class Goal {
+final public class goal {
     private final String goal;
     public Goal (String code) throws BadFormatGoalException {
         if (code == null) throw new NullPointerException("Goal code is null.");
@@ -22,4 +22,5 @@ final public class Goal {
     public String toString () {
         return goal;
     }
+}
 }
