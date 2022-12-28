@@ -1,8 +1,11 @@
 package publicadministration;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import data.DocPath;
+
 
 public class PDFDocument { // Represents a PDF document
     private final Date creatDate;
