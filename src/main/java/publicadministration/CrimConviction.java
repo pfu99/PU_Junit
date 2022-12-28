@@ -1,12 +1,36 @@
 package publicadministration;
 
-public class CrimConviction { // Represents a criminal conviction registered
-    private Date commitDate;
-    private String offense;
-    private String sentence;
+import java.util.Date;
 
-    public CrimConviction (Date commit, String off, String sentc){ . . . }
-// Initializes attributes
- (. . .) // the getters
-    public String toString () { . . . } // converts to String
+public class CrimConviction { // Represents a criminal conviction registered
+    private final Date commitDate;
+    private final String offense;
+    private final String sentence;
+
+    public CrimConviction (Date commit, String off, String sentc){
+        this.commitDate = commit;
+        this.offense = off;
+        this.sentence = sentc;
+    }
+
+    public Date getCommitDate() {
+        return commitDate;
+    }
+
+    public String getOffense() {
+        return offense;
+    }
+
+    public String getSentence() {
+        return sentence;
+    }
+
+    @Override
+    public String toString () {
+        return "CrimConviction{" +
+                "commitDate=" + commitDate +
+                ", offense='" + offense + '\'' +
+                ", sentence='" + sentence + '\'' +
+                '}';
+    }
 }
