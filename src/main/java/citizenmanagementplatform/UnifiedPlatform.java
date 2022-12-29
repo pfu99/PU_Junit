@@ -8,7 +8,7 @@ public class UnifiedPlatform {
         System.out.println("Entering to Ministerio de Justicia");
     };
     public void selectProcedures () {
-        System.out.println("Selected TrÃ¡mites");
+        System.out.println("Selected Trámites");
     };
     public void selectCriminalReportCertf () {
         System.out.println("Procedure selected for obtaining a Criminal Report");
