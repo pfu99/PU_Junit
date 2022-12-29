@@ -6,6 +6,7 @@ final public class DigitalSignature {
     private final String signature;
     public DigitalSignature(String code) throws BadFormatSignatureException {
         if (code == null) throw new NullPointerException("Digital signature code is null.");
+        // Add validation to check if the signature is a valid base64-encoded string or a valid hash of the document being signed
         this.signature = code;
     }
     public String getSignature() { return signature; }
@@ -22,5 +23,4 @@ final public class DigitalSignature {
     public String toString () {
         return signature;
     }
-
 }

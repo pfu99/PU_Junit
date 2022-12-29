@@ -23,3 +23,4 @@ final public class Goal {
         return goal;
     }
 }
+
