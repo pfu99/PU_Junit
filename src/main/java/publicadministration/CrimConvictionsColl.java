@@ -1,12 +1,9 @@
 package publicadministration;
 
-import java.util.Date;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 public class CrimConvictionsColl { // Represents the total criminal convictions registered for a citizen
     private Set<CrimConviction> convictions; // Its components, that is, the set of criminal convictions
-
     public CrimConvictionsColl (){
         this.convictions = new HashSet<>();
     } // Initializes the object
