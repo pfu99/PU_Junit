@@ -4,17 +4,22 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Objects;
+
 import data.DocPath;
+import exceptions.BadPathException;
 
 
 public class PDFDocument { // Represents a PDF document
     private final Date creatDate;
-    private final DocPath path;
-    private final File file;
+    private DocPath path;
+    private File file;
+    static final String DEFAULT_PATH = "src/main/res/informe.pdf";
 
-    public PDFDocument() {
+
+    public PDFDocument() throws BadPathException {
         this.creatDate = new Date();
-        this.path = new DocPath("default/path/pdf.pdf");
+        this.path = new DocPath(DEFAULT_PATH);
         this.file = new File(this.path.getPath());
     }
 
@@ -41,8 +46,8 @@ public class PDFDocument { // Represents a PDF document
         if (!file.renameTo(destFile)) {
             throw new IOException("Unable to move file to destination path");
         }
-        this.path = destPath;
-        this.file = destFile;
+        path = destPath;
+        file = destFile;
     }
 
     public void openDoc(DocPath path) throws IOException {
@@ -56,6 +61,14 @@ public class PDFDocument { // Represents a PDF document
         Desktop.getDesktop().open(file);
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PDFDocument that = (PDFDocument) o;
+        return Objects.equals(creatDate, that.creatDate) && Objects.equals(path, that.path);
+    }
     @Override
     public String toString() {
         return "PDFDocument{" +

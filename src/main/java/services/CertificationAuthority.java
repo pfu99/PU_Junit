@@ -13,3 +13,4 @@ public interface CertificationAuthority {// External service that represents the
             ConnectException;
     boolean checkPIN (Nif nif, SmallCode pin) throws NotValidPINException,
             ConnectException;
+}
