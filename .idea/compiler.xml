@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="PU_Junit" target="8" />
+      <module name="PU_Junit" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
