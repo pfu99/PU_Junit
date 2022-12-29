@@ -42,8 +42,17 @@ public class NifTest {
     public void equalsDiffTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("12345678A");
-        assertTrue(nif1.equals(nif2));
+        assertTrue(nif1.equals(nif2) && nif2.equals(nif1));
     }
+
+    @Test
+    @DisplayName("Equals consistency in both directions")
+    public void doubleCheckTest() throws BadFormatNifException {
+        Nif nif1 = new Nif("12345678A");
+        Nif nif2 = new Nif("12345678A");
+        assertTrue(nif1.equals(nif2) && nif2.equals(nif1));
+    }
+
 
     @Test
     @DisplayName("Equals on same reference")
@@ -58,5 +67,13 @@ public class NifTest {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("87654321Z");
         assertFalse(nif1.equals(nif2));
+    }
+
+    @Test
+    @DisplayName("Hash code test")
+    public void hashCodeTest() throws BadFormatNifException {
+        Nif nif1 = new Nif("12345678A");
+        Nif nif2 = new Nif("12345678A");
+        assertEquals(nif1.hashCode(), nif2.hashCode());
     }
 }
