@@ -3,15 +3,16 @@ package publicadministration;
 import data.DigitalSignature;
 import data.Goal;
 import data.Nif;
+import exceptions.BadPathException;
 
 public class CriminalRecordCertf extends PDFDocument { // Represents the Criminal Record Certificate
-    private Nif nif;
-    private String name;
-    private Goal goal;
-    private DigitalSignature digSign;
-    private CrimConvictionsColl crimConvs;
+    private final Nif nif;
+    private final String name;
+    private final Goal goal;
+    private final DigitalSignature digSign;
+    private final CrimConvictionsColl crimConvs;
 
-    public CriminalRecordCertf (Nif nif, String name, Goal g, DigitalSignature ds, CrimConvictionsColl crmC) {
+    public CriminalRecordCertf (Nif nif, String name, Goal g, DigitalSignature ds, CrimConvictionsColl crmC) throws BadPathException {
         this.nif = nif;
         this.name = name;
         this.goal = g;

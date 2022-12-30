@@ -8,18 +8,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NifTest {
-
-    @Test
-    public void nullNif() {
-        Throwable ex =
-                assertThrows(
-                        NullPointerException.class,
-                        () -> {
-                            new Nif(null);
-                        });
-        assertEquals("NIF code is null.", ex.getMessage());
-    }
-
     @Test
     public void badNIFFormat() {
         Throwable ex =
@@ -38,7 +26,6 @@ public class NifTest {
     }
 
     @Test
-    @DisplayName("Equals on different reference with same values")
     public void equalsDiffTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("12345678A");
@@ -46,7 +33,6 @@ public class NifTest {
     }
 
     @Test
-    @DisplayName("Equals consistency in both directions")
     public void doubleCheckTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("12345678A");
@@ -55,22 +41,19 @@ public class NifTest {
 
 
     @Test
-    @DisplayName("Equals on same reference")
     public void equalsSameTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
-        assertTrue(nif1.equals(nif1));
+        assertEquals(nif1, nif1);
     }
 
     @Test
-    @DisplayName("Equals on different reference with different values")
     public void notEqualsTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("87654321Z");
-        assertFalse(nif1.equals(nif2));
+        assertNotEquals(nif1, nif2);
     }
 
     @Test
-    @DisplayName("Hash code test")
     public void hashCodeTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("12345678A");

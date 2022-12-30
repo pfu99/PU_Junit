@@ -20,25 +20,22 @@ public class GoalTest {
     }
 
     @Test
-    @DisplayName("Equals on different reference with same values")
     public void equalsDiffTest() throws BadFormatGoalException {
         Goal goal1 = new Goal("Get a job");
         Goal goal2 = new Goal("Get a job");
-        assertTrue(goal1.equals(goal2));
+        assertEquals(goal1, goal2);
     }
 
     @Test
-    @DisplayName("Equals on same reference")
     public void equalsSameTest() throws BadFormatGoalException {
         Goal goal1 = new Goal("Get a job");
-        assertTrue(goal1.equals(goal1));
+        assertEquals(goal1, goal1);
     }
 
     @Test
-    @DisplayName("Equals on different reference with different values")
     public void notEqualsTest() throws BadFormatGoalException {
         Goal goal1 = new Goal("Get a job");
         Goal goal2 = new Goal("Find a partner");
-        assertFalse(goal1.equals(goal2));
+        assertNotEquals(goal1, goal2);
     }
 }

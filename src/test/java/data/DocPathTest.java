@@ -20,25 +20,22 @@ public class DocPathTest {
     }
 
     @Test
-    @DisplayName("Equals on different reference with same values")
     public void equalsDiffTest() throws BadPathException {
         DocPath path1 = new DocPath("/users/documents/file.txt");
         DocPath path2 = new DocPath("/users/documents/file.txt");
-        assertTrue(path1.equals(path2));
+        assertEquals(path1, path2);
     }
 
     @Test
-    @DisplayName("Equals on same reference")
     public void equalsSameTest() throws BadPathException {
         DocPath path1 = new DocPath("/users/documents/file.txt");
-        assertTrue(path1.equals(path1));
+        assertEquals(path1, path1);
     }
 
     @Test
-    @DisplayName("Equals on different reference with different values")
     public void notEqualsTest() throws BadPathException {
         DocPath path1 = new DocPath("/users/documents/file.txt");
         DocPath path2 = new DocPath("/users/documents/other_file.txt");
-        assertFalse(path1.equals(path2));
+        assertNotEquals(path1, path2);
     }
 }

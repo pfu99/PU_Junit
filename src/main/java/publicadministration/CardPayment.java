@@ -14,6 +14,8 @@ public class CardPayment {
     public CardPayment (Nif nif, BigDecimal importValue) {
         this.nif = nif;
         this.importValue = importValue;
+        this.date = new Date();
+        this.reference = "";
     }
 
     public String getReference() {

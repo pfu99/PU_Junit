@@ -4,10 +4,10 @@ import data.Nif;
 
 public class Citizen {
     // Represents all the information required for a citizen
-    private Nif nif;
-    private String name;
-    private String address;
-    private String mobileNumber;
+    private final Nif nif;
+    private final String name;
+    private final String address;
+    private final String mobileNumber;
 
     public Citizen (Nif nif, String name, String address, String mobileNumber) {
         this.nif = nif;
