@@ -46,20 +46,20 @@ public class PasswordTest {
     public void equalsDiffTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         Password password2 = new Password("1234567890");
-        assertTrue(password1.equals(password2));
+        assertEquals(password1, password2);
     }
 
     @Test
     public void equalsSameTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
-        assertTrue(password1.equals(password1));
+        assertEquals(password1, password1);
     }
 
     @Test
     public void notEqualsTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         Password password2 = new Password("0987654321");
-        assertFalse(password1.equals(password2));
+        assertNotEquals(password1, password2);
     }
 
     @Test

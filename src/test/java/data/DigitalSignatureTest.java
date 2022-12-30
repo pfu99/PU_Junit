@@ -29,20 +29,20 @@ public class DigitalSignatureTest {
     public void equalsDiffTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         DigitalSignature signature2 = new DigitalSignature("abcdefg123456");
-        assertTrue(signature1.equals(signature2));
+        assertEquals(signature1, signature2);
     }
 
     @Test
     public void equalsSameTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
-        assertTrue(signature1.equals(signature1));
+        assertEquals(signature1, signature1);
     }
 
     @Test
     public void notEqualsTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         DigitalSignature signature2 = new DigitalSignature("zyxwvuts987654");
-        assertFalse(signature1.equals(signature2));
+        assertNotEquals(signature1, signature2);
     }
 
     @Test

@@ -23,19 +23,19 @@ public class GoalTest {
     public void equalsDiffTest() throws BadFormatGoalException {
         Goal goal1 = new Goal("Get a job");
         Goal goal2 = new Goal("Get a job");
-        assertTrue(goal1.equals(goal2));
+        assertEquals(goal1, goal2);
     }
 
     @Test
     public void equalsSameTest() throws BadFormatGoalException {
         Goal goal1 = new Goal("Get a job");
-        assertTrue(goal1.equals(goal1));
+        assertEquals(goal1, goal1);
     }
 
     @Test
     public void notEqualsTest() throws BadFormatGoalException {
         Goal goal1 = new Goal("Get a job");
         Goal goal2 = new Goal("Find a partner");
-        assertFalse(goal1.equals(goal2));
+        assertNotEquals(goal1, goal2);
     }
 }

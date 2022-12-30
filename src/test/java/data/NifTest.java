@@ -43,14 +43,14 @@ public class NifTest {
     @Test
     public void equalsSameTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
-        assertTrue(nif1.equals(nif1));
+        assertEquals(nif1, nif1);
     }
 
     @Test
     public void notEqualsTest() throws BadFormatNifException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("87654321Z");
-        assertFalse(nif1.equals(nif2));
+        assertNotEquals(nif1, nif2);
     }
 
     @Test

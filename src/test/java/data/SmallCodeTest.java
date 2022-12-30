@@ -50,20 +50,20 @@ public class SmallCodeTest {
     public void equalsDiffTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         SmallCode smallCode2 = new SmallCode("123");
-        assertTrue(smallCode1.equals(smallCode2));
+        assertEquals(smallCode1, smallCode2);
     }
 
     @Test
     public void equalsSameTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
-        assertTrue(smallCode1.equals(smallCode1));
+        assertEquals(smallCode1, smallCode1);
     }
 
     @Test
     public void notEqualsTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         SmallCode smallCode2 = new SmallCode("456");
-        assertFalse(smallCode1.equals(smallCode2));
+        assertNotEquals(smallCode1, smallCode2);
     }
 
     @Test
