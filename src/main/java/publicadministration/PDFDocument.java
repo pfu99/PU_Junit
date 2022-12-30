@@ -14,7 +14,7 @@ public class PDFDocument { // Represents a PDF document
     private final Date creatDate;
     private DocPath path;
     private File file;
-    static final String DEFAULT_PATH = "src/main/res/informe.pdf";
+    static final String DEFAULT_PATH = "src/main/res/document.pdf";
 
 
     public PDFDocument() throws BadPathException {
@@ -41,26 +41,6 @@ public class PDFDocument { // Represents a PDF document
         return file;
     }
 
-    public void moveDoc(DocPath destPath) throws IOException {
-        File destFile = new File(destPath.getPath());
-        if (!file.renameTo(destFile)) {
-            throw new IOException("Unable to move file to destination path");
-        }
-        path = destPath;
-        file = destFile;
-    }
-
-    public void openDoc(DocPath path) throws IOException {
-        File file = new File(path.getPath());
-        if (!file.exists()) {
-            throw new IOException("File does not exist at specified path");
-        }
-        if (!Desktop.isDesktopSupported()) {
-            throw new IOException("Desktop operations are not supported on this platform");
-        }
-        Desktop.getDesktop().open(file);
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -77,4 +57,19 @@ public class PDFDocument { // Represents a PDF document
                 ", file=" + file +
                 '}';
     }
+
+    public void moveDoc(DocPath destPath) throws IOException, BadPathException {
+        if (destPath == null) throw new NullPointerException("Path can't be NULL");
+        if (!file.renameTo(new File(destPath.getPath())))
+            throw new IOException("Unable to rename file");
+        path = new DocPath(destPath.getPath());
+        file = new File(destPath.getPath());
+    }
+
+    public void openDoc(DocPath path) throws IOException {
+        if (path == null) throw new NullPointerException("Path can't be null");
+        File toOpenFile = new File(path.getPath());
+        Desktop.getDesktop().open(toOpenFile);
+    }
+
 }

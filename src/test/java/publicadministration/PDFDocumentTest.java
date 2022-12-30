@@ -21,13 +21,13 @@ public class PDFDocumentTest {
 
     @Test
     public void getDefaultPathTest() throws BadPathException {
-        DocPath path = new DocPath("src/main/res/informe.pdf");
+        DocPath path = new DocPath("src/main/res/document.pdf");
         assertEquals(path, document.getPath());
     }
 
     @Test
     public void moveDocTest() throws IOException, BadPathException {
-        DocPath newPath = new DocPath("src/main/informe.pdf");
+        DocPath newPath = new DocPath("src/main/document.pdf");
         document.moveDoc(newPath);
         assertEquals(newPath, document.getPath());
         assertEquals(newPath.getPath(), document.getFile().getPath());
@@ -46,7 +46,6 @@ public class PDFDocumentTest {
     }
 
     @Test
-    @DisplayName("Move a document that doesn't exist")
     public void moveDocNoExistsTest() {
         Throwable ex =
                 assertThrows(
@@ -59,7 +58,7 @@ public class PDFDocumentTest {
 
     @Test
     public void openDocTest() throws BadPathException {
-        DocPath path = new DocPath("src/main/res/informe.pdf");
+        DocPath path = new DocPath("src/main/res/document.pdf");
         assertDoesNotThrow(() -> document.openDoc(path));
     }
 
@@ -75,7 +74,6 @@ public class PDFDocumentTest {
     }
 
     @Test
-    @DisplayName("Open a document that doesn't exist")
     public void openDocNoFileTest() {
         assertThrows(
                 IllegalArgumentException.class,

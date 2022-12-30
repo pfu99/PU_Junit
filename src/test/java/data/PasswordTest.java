@@ -43,7 +43,6 @@ public class PasswordTest {
     }
 
     @Test
-    @DisplayName("Equals on different reference with same values")
     public void equalsDiffTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         Password password2 = new Password("1234567890");
@@ -51,14 +50,12 @@ public class PasswordTest {
     }
 
     @Test
-    @DisplayName("Equals on same reference")
     public void equalsSameTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         assertTrue(password1.equals(password1));
     }
 
     @Test
-    @DisplayName("Equals on different reference with different values")
     public void notEqualsTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         Password password2 = new Password("0987654321");
@@ -66,14 +63,12 @@ public class PasswordTest {
     }
 
     @Test
-    @DisplayName("toString on valid password")
     public void toStringTest() throws BadFormatPasswordException {
         Password password = new Password("1234567890");
         assertEquals("Password{password='1234567890'}", password.toString());
     }
 
     @Test
-    @DisplayName("hashCode on different reference with same values")
     public void hashCodeDiffTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         Password password2 = new Password("1234567890");
@@ -81,14 +76,12 @@ public class PasswordTest {
     }
 
     @Test
-    @DisplayName("hashCode on same reference")
     public void hashCodeSameTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         assertEquals(password1.hashCode(), password1.hashCode());
     }
 
     @Test
-    @DisplayName("hashCode on different reference with different values")
     public void hashCodeNotEqualsTest() throws BadFormatPasswordException {
         Password password1 = new Password("1234567890");
         Password password2 = new Password("0987654321");

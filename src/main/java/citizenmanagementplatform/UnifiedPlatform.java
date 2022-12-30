@@ -21,7 +21,7 @@ public class UnifiedPlatform {
         System.out.println("Procedure selected for obtaining a Criminal Report");
     };
     public void selectAuthMethod (byte opc) {
-        this.authMethod = AuthenticationMethod.valueOf(opc);
+        //this.authMethod = AuthenticationMethod.valueOf(opc);
         System.out.println("Showing authentication form");
     };
     public void enterNIFandPINobt (Nif nif, Date valDate)
@@ -53,9 +53,9 @@ public class UnifiedPlatform {
 
     }
 
- (. . .) // The setter methods for injecting the dependences
+// The setter methods for injecting the dependences
 
-         (. . .) // Other input events (not required)
+         // Other input events (not required)
     // Other internal operations (not required)
     private void registerPayment () { }
     private void openDocument (DocPath path) throws BadPathException{

@@ -47,7 +47,6 @@ public class SmallCodeTest {
         assertEquals("123", smallCode.getSmallCode());
     }
     @Test
-    @DisplayName("Equals on different reference with same values")
     public void equalsDiffTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         SmallCode smallCode2 = new SmallCode("123");
@@ -55,14 +54,12 @@ public class SmallCodeTest {
     }
 
     @Test
-    @DisplayName("Equals on same reference")
     public void equalsSameTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         assertTrue(smallCode1.equals(smallCode1));
     }
 
     @Test
-    @DisplayName("Equals on different reference with different values")
     public void notEqualsTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         SmallCode smallCode2 = new SmallCode("456");
@@ -70,14 +67,12 @@ public class SmallCodeTest {
     }
 
     @Test
-    @DisplayName("toString on valid small code")
     public void toStringTest() throws BadFormatSmallCodeException {
         SmallCode smallCode = new SmallCode("123");
         assertEquals("123", smallCode.toString());
     }
 
     @Test
-    @DisplayName("hashCode on different reference with same values")
     public void hashCodeDiffTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         SmallCode smallCode2 = new SmallCode("123");
@@ -85,14 +80,12 @@ public class SmallCodeTest {
     }
 
     @Test
-    @DisplayName("hashCode on same reference")
     public void hashCodeSameTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         assertEquals(smallCode1.hashCode(), smallCode1.hashCode());
     }
 
     @Test
-    @DisplayName("hashCode on different reference with different values")
     public void hashCodeNotEqualsTest() throws BadFormatSmallCodeException {
         SmallCode smallCode1 = new SmallCode("123");
         SmallCode smallCode2 = new SmallCode("456");

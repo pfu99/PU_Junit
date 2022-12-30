@@ -3,33 +3,31 @@ package publicadministration;
 import java.util.*;
 
 public class CrimConvictionsColl { // Represents the total criminal convictions registered for a citizen
-    private Set<CrimConviction> convictions; // Its components, that is, the set of criminal convictions
+    private Map<Date, CrimConviction> conviction;// Its components, that is, the set of criminal convictions
     public CrimConvictionsColl (){
-        this.convictions = new HashSet<>();
+        this.conviction = new HashMap<>();
     } // Initializes the object
 
-    public Set<CrimConviction> getConvictions() {
-        return convictions;
-    }
-
     public void addCriminalConviction (CrimConviction crmC){
-        this.convictions.add(crmC);
+        this.conviction.put(crmC.getCommitDate(), crmC);
     }
     // Adds a criminal conviction
     public CrimConviction getCriminalConviction (Date date){
-        for (CrimConviction c : convictions) {
-            if (c.getCommitDate().equals(date)) {
-                return c;
-            }
-        }
-        return null;
+        return conviction.get(date);
+    }
+    public Map<Date, CrimConviction> getConvictions() {
+        return conviction;
     }
     // Gets a specific criminal conviction by date
-    public String toString () {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (CrimConviction c : convictions) {
-            sb.append(c.toString()).append("\n");
+        sb.append("CrimConvictionsColl{\n");
+        for (Map.Entry<Date, CrimConviction> entry : conviction.entrySet()) {
+            sb.append("  ").append(entry.getValue()).append("\n");
         }
+        sb.append("}");
         return sb.toString();
-    } // Converts to String
+    }
+
 }

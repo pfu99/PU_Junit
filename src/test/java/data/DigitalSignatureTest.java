@@ -26,7 +26,6 @@ public class DigitalSignatureTest {
     }
 
     @Test
-    @DisplayName("Equals on different reference with same values")
     public void equalsDiffTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         DigitalSignature signature2 = new DigitalSignature("abcdefg123456");
@@ -34,14 +33,12 @@ public class DigitalSignatureTest {
     }
 
     @Test
-    @DisplayName("Equals on same reference")
     public void equalsSameTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         assertTrue(signature1.equals(signature1));
     }
 
     @Test
-    @DisplayName("Equals on different reference with different values")
     public void notEqualsTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         DigitalSignature signature2 = new DigitalSignature("zyxwvuts987654");
@@ -49,14 +46,12 @@ public class DigitalSignatureTest {
     }
 
     @Test
-    @DisplayName("toString on valid signature")
     public void toStringTest() throws BadFormatSignatureException {
         DigitalSignature signature = new DigitalSignature("abcdefg123456");
         assertEquals("abcdefg123456", signature.toString());
     }
 
     @Test
-    @DisplayName("hashCode on different reference with same values")
     public void hashCodeDiffTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         DigitalSignature signature2 = new DigitalSignature("abcdefg123456");
@@ -64,14 +59,12 @@ public class DigitalSignatureTest {
     }
 
     @Test
-    @DisplayName("hashCode on same reference")
     public void hashCodeSameTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         assertEquals(signature1.hashCode(), signature1.hashCode());
     }
 
     @Test
-    @DisplayName("hashCode on different reference with different values")
     public void hashCodeNotEqualsTest() throws BadFormatSignatureException {
         DigitalSignature signature1 = new DigitalSignature("abcdefg123456");
         DigitalSignature signature2 = new DigitalSignature("zyxwvuts987654");
