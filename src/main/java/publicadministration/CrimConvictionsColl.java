@@ -3,7 +3,7 @@ package publicadministration;
 import java.util.*;
 
 public class CrimConvictionsColl { // Represents the total criminal convictions registered for a citizen
-    private Map<Date, CrimConviction> conviction;// Its components, that is, the set of criminal convictions
+    private final Map<Date, CrimConviction> conviction;// Its components, that is, the set of criminal convictions
     public CrimConvictionsColl (){
         this.conviction = new HashMap<>();
     } // Initializes the object

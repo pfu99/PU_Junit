@@ -15,7 +15,7 @@ public class CardPayment {
         this.nif = nif;
         this.importValue = importValue;
         this.date = new Date();
-        this.reference = new String();
+        this.reference = "";
     }
 
     public String getReference() {
