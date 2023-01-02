@@ -9,14 +9,35 @@ import data.Nif;
 import data.SmallCode;
 import enums.AuthenticationMethod;
 import exceptions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import publicadministration.Citizen;
 import publicadministration.CreditCard;
 import publicadministration.CrimConvictionsColl;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Date;
 
 class UnifiedPlatformTest {
+
+    PrintStream outStream = System.out;
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    UnifiedPlatform unifiedPlatform = new UnifiedPlatform();
+
+    @BeforeEach
+    void initializeOutput() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    void finish() {
+        outContent.reset();
+        System.setOut(outStream);
+    }
+
     private final UnifiedPlatform platform = new UnifiedPlatform();
     private final Citizen testCitizen = new Citizen(new Nif("12345678A"), "Artur", "Av. Madrid, 68", "987654321");
     private final Goal testGoal = new Goal("Obtain criminal record certificate");
@@ -33,7 +54,20 @@ class UnifiedPlatformTest {
         platform.selectJusMin();
         assertTrue(true); // This method only prints to the console, so we can't really test it
     }
-
+    @Test
+    @DisplayName("Input events without clicking on process searcher")
+    void inputEventsTestWithoutProcess() {
+        String expectedOutput = "Entering to Ministerio de Justicia" +
+                "\n";
+                        //+ "Selected Citizens\n"
+                        //+ "Report Options: \n"
+                        //+ "Report: LABORAL_LIFE_DOC has byte: 0Report: MEMBER_ACCREDITATION_DOC has"
+                        //+ " byte: 1\n";
+        unifiedPlatform.selectJusMin();
+        //unifiedPlatform.testSelectProcedures();
+        //unifiedPlatform.testSelectCriminalReportCertf();
+        assertEquals(expectedOutput, outContent.toString());
+    }
     @Test
     void testSelectProcedures() {
         platform.selectProcedures();
