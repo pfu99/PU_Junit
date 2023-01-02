@@ -1,9 +1,9 @@
 package publicadministration;
 
 import data.DigitalSignature;
-import data.Goal;
 import data.Nif;
 import exceptions.BadPathException;
+import enums.Goal;
 
 public class CriminalRecordCertf extends PDFDocument { // Represents the Criminal Record Certificate
     private final Nif nif;

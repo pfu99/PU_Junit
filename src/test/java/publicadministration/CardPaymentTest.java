@@ -1,6 +1,5 @@
 package publicadministration;
 
-import data.Goal;
 import data.Nif;
 import exceptions.BadFormatNifException;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,10 @@
 package services;
 
-import data.Goal;
 import exceptions.ConnectException;
 import exceptions.DigitalSignatureException;
 import publicadministration.Citizen;
 import publicadministration.CriminalRecordCertf;
+import enums.Goal;
 
 /**
  * External services involved in procedures from population
