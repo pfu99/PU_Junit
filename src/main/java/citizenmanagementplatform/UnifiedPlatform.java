@@ -40,26 +40,19 @@ public class UnifiedPlatform {
     public void selectJusMin() {
         System.out.println("Entering to Ministerio de Justicia");
     }
-    ;
 
     public void selectProcedures() {
         System.out.println("Selected Trámites");
     }
 
-    ;
-
     public void selectCriminalReportCertf() {
         System.out.println("Procedure selected for obtaining a Criminal Report");
     }
-
-    ;
 
     public void selectAuthMethod(byte opc) {
         this.authMethod = AuthenticationMethod.valueOf(opc);
         System.out.println("Showing authentication form");
     }
-
-    ;
 
     public void enterNIFandPINobt(Nif nif, Date valDate)
             throws NifNotRegisteredException, IncorrectValDateException,

@@ -47,14 +47,4 @@ public enum AuthenticationMethod {
 
         authMethod.obtainPIN(nif, valDate);
     }
-
-    public void authenticate(SmallCode pin) throws NotValidPINException, ConnectException {
-        // Connect to the certification authority's service
-        CertificationAuthority certAuth = new CertificationAuthority();
-        boolean valid = certAuth.checkPIN(pin);
-
-        if (!valid) {
-            throw new NotValidPINException();
-        }
-    }
 }

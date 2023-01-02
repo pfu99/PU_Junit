@@ -1,6 +1,5 @@
 package enums;
 
-import java.util.Objects;
 
 public enum Goal {
     WORKWITHMINORS("Trabajar con menores"),
