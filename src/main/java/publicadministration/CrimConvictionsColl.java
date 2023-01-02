@@ -37,5 +37,4 @@ public class CrimConvictionsColl { // Represents the total criminal convictions 
         sb.append("}");
         return sb.toString();
     }
-
 }

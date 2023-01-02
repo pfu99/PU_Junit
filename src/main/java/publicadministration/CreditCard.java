@@ -39,4 +39,3 @@ public class CreditCard {
         return "CreditCard{" + "nif=" + nif + ", cardNumb='" + cardNumb + '\'' + ", expirDate=" + expirDate + ", svc=" + svc + '}';
     }
 }
-
