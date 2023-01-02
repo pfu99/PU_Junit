@@ -27,13 +27,14 @@ public class UnifiedPlatform {
     private CAS cas;
     private JusticeMinistry justiceMinistry;
 
-    public UnifiedPlatform() {
-        this.citizen = null;
-        this.goal = null;
-        this.cardData = null;
-        this.digSign = null;
-        this.crimConvs = null;
+    public UnifiedPlatform() throws BadFormatNifException, BadFormatGoalException, BadFormatSmallCodeException, BadFormatSignatureException {
+        this.citizen = new Citizen(new Nif("12345678A"), "Artur", "Av. Madrid, 68", "123456789");
+        this.goal = new Goal("Get a job");
+        this.cardData = new CreditCard(new Nif("12345678A"), "987654321", new Date(), new SmallCode("123"));
+        this.digSign = new DigitalSignature("abcdefg123456");
+        this.crimConvs = new CrimConvictionsColl();
         this.authMethod = null;
+
     }
 
     // Input events
