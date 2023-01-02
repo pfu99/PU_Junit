@@ -38,15 +38,15 @@ public class UnifiedPlatform {
     }
 
     // Input events
-    public void selectJusMin() {
+    public static void selectJusMin() {
         System.out.println("Entering to Ministerio de Justicia");
     }
 
-    public void selectProcedures() {
+    public static void selectProcedures() {
         System.out.println("Selected Trámites");
     }
 
-    public void selectCriminalReportCertf() {
+    public static void selectCriminalReportCertf() {
         System.out.println("Procedure selected for obtaining a Criminal Report");
     }
 
@@ -68,7 +68,7 @@ public class UnifiedPlatform {
         if (this.certificationAuthority.checkPIN(citizen.getNif(), pin))
             System.out.println("PIN checked correctly");
     }
-    void enterForm(Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException,
+    public void enterForm(Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException,
             ConnectException {
         if (citz == null || goal == null)
             throw new IncompleteFormException("Please fill all the required fields in the form");
@@ -76,11 +76,11 @@ public class UnifiedPlatform {
             throw new IncorrectVerificationException("The DGP could not verify the entered information");
     }
 
-    void realizePayment() {
+    public void realizePayment() {
         System.out.println("Ready to pay");
     }
 
-    void enterCardData(CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException,
+    public void enterCardData(CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException,
             InsufficientBalanceException, ConnectException {
         if (cardD == null) {
             throw new IncompleteFormException("Credit card information is missing");
@@ -91,7 +91,7 @@ public class UnifiedPlatform {
         }
     }
 
-    void obtainCertificate() throws BadPathException, DigitalSignatureException, ConnectException {
+    public void obtainCertificate() throws BadPathException, DigitalSignatureException, ConnectException {
         justiceMinistry.getCriminalRecordCertf(citizen, goal);
     }
 
@@ -138,5 +138,21 @@ public class UnifiedPlatform {
     }
     private void printDocument (DocPath path) throws BadPathException, PrintingException{
 
+    }
+
+    public void setCertificationAuthority(CertificationAuthority certificationAuthority) {
+        this.certificationAuthority = certificationAuthority;
+    }
+
+    public void setGPD(GPD gpd) {
+        this.gpd = gpd;
+    }
+
+    public void setCAS(CAS cas) {
+        this.cas = cas;
+    }
+
+    public void setJusticeMinistry(JusticeMinistry justiceMinistry) {
+        this.justiceMinistry = justiceMinistry;
     }
 }

@@ -1,135 +1,99 @@
 package citizenmanagementplatform;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import citizenmanagementplatform.UnifiedPlatform;
 import data.DigitalSignature;
 import data.Goal;
 import data.Nif;
 import data.SmallCode;
-import enums.AuthenticationMethod;
-import exceptions.*;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.Before;
 import publicadministration.Citizen;
 import publicadministration.CreditCard;
 import publicadministration.CrimConvictionsColl;
+import services.CAS;
+import services.CertificationAuthority;
+import services.GPD;
+import services.JusticeMinistry;
+import java.net.ConnectException;
+//import data.BadPathException;
+import exceptions.PrintingException;
 
+
+import java.math.BigDecimal;
 import java.util.Date;
 
-class UnifiedPlatformTest {
-    private final UnifiedPlatform platform = new UnifiedPlatform();
-    private final Citizen testCitizen = new Citizen(new Nif("12345678A"), "Artur", "Av. Madrid, 68", "987654321");
-    private final Goal testGoal = new Goal("Obtain criminal record certificate");
-    private final CreditCard testCard = new CreditCard(new Nif("12345678A"), "1234567890123456", new Date(), new SmallCode("123"));
-    private final DigitalSignature testSignature = new DigitalSignature("123");
-    private final CrimConvictionsColl testConvictions = new CrimConvictionsColl();
-    private Object authMethod;
+import static java.lang.Boolean.*;
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
-    UnifiedPlatformTest() throws BadFormatNifException, BadFormatSmallCodeException, BadFormatSignatureException, BadFormatGoalException {
+public class UnifiedPlatformTest {
+    // Test dependencies
+    private CertificationAuthority certificationAuthority;
+    private GPD gpd;
+    private CAS cas;
+    private JusticeMinistry justiceMinistry;
+    // Test data
+    private Citizen citizen;
+    private Goal goal;
+    private CreditCard cardData;
+    private DigitalSignature digSign;
+    private CrimConvictionsColl crimConvs;
+    private Nif nif;
+    private Date valDate;
+    private SmallCode pin;
+
+    @Before
+    public void setUp() throws Exception {
+        // Initialize test dependencies
+        certificationAuthority = mock(CertificationAuthority.class);
+        gpd = mock(GPD.class);
+        cas = mock(CAS.class);
+        justiceMinistry = mock(JusticeMinistry.class);
+        // Initialize test data
+        nif = new Nif("12345678A");
+        valDate = new Date();
+        pin = new SmallCode("123");
+        citizen = new Citizen(nif, "Artur", "Av. Madrid, 68", "123456789");
+        goal = new Goal("Get a job");
+        cardData = new CreditCard(nif, "987654321", new Date(), new SmallCode("123"));
+        digSign = new DigitalSignature("abcdefg123456");
+        crimConvs = new CrimConvictionsColl();
+        // Set up mock behavior
+        when(certificationAuthority.sendPIN(nif, valDate)).thenReturn(true);
+        when(certificationAuthority.checkPIN(nif, pin)).thenReturn(true);
+        when(gpd.verifyData(citizen, goal)).thenReturn(true);
+        when(cas.askForApproval(anyString(), any(CreditCard.class), any(Date.class), any(BigDecimal.class))).thenReturn(true);
     }
 
     @Test
-    void testSelectJusMin() {
+    public void testObtainCriminalRecordCertificate() throws Exception {
+        // Create UnifiedPlatform object and inject dependencies
+        UnifiedPlatform platform = new UnifiedPlatform();
+        platform.setCertificationAuthority(certificationAuthority);
+        platform.setGPD(gpd);
+        platform.setCAS(cas);
+        platform.setJusticeMinistry(justiceMinistry);
+        // Set up mock behavior for obtaining certificate
+        //when(justiceMinistry.getCriminalRecordCertf(citizen, goal)).thenReturn(true);
+        doAnswer(invocation -> {
+            return TRUE;
+        }).when(justiceMinistry).getCriminalRecordCertf(citizen, goal);
+
+        // Execute use case
         platform.selectJusMin();
-        assertTrue(true); // This method only prints to the console, so we can't really test it
-    }
-
-    @Test
-    void testSelectProcedures() {
         platform.selectProcedures();
-        assertTrue(true); // This method only prints to the console, so we can't really test it
-    }
-
-    @Test
-    void testSelectCriminalReportCertf() {
+        platform.selectProcedures();
         platform.selectCriminalReportCertf();
-        assertTrue(true); // This method only prints to the console, so we can't really test it
-    }
-
-    @Test
-    void testSelectAuthMethod() {
-        platform.selectAuthMethod((byte) 1);
-        assertEquals(AuthenticationMethod.valueOf((byte) 1), platform.authMethod);
-    }
-
-    @Test
-    void testEnterNIFandPINobt() {
-        // This method throws exceptions, so we need to handle them in our test
-        try {
-            platform.enterNIFandPINobt(testCitizen.getNif(), new Date());
-            assertTrue(true); // If no exceptions were thrown, the test passed
-        } catch (NifNotRegisteredException | IncorrectValDateException | AnyMobileRegisteredException | ConnectException e) {
-            fail("An exception was thrown");
-        }
-    }
-
-    @Test
-    void testEnterPIN() {
-        // This method throws exceptions, so we need to handle them in our test
-        try {
-            platform.enterPIN(new SmallCode("123"));
-            assertTrue(true); // If no exceptions were thrown, the test passed
-        } catch (NotValidPINException | ConnectException e) {
-            fail("An exception was thrown");
-        } catch (BadFormatSmallCodeException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Test
-    void testEnterForm() {
-        // This method throws exceptions, so we need to handle them in our test
-        try {
-            platform.setCitizen(testCitizen);
-            platform.setGoal(testGoal);
-            platform.enterForm(testCitizen, testGoal);
-            assertTrue(true); // If no exceptions were thrown, the test passed
-        } catch (IncompleteFormException | IncorrectVerificationException | ConnectException e) {
-            fail("An exception was thrown");
-        }
-    }
-
-    @Test
-    void testRealizePayment() {
+        platform.selectAuthMethod((byte) 0);
+        platform.enterNIFandPINobt(nif, valDate);
+        platform.enterPIN(pin);
+        platform.enterForm(citizen, goal);
         platform.realizePayment();
-        assertTrue(true);
-    }
-
-    @Test
-    void testEnterCardData() {
-        // This method throws exceptions, so we need to handle them in our test
-        try {
-            platform.setCardData(testCard);
-            platform.enterCardData(testCard);
-            assertTrue(true); // If no exceptions were thrown, the test passed
-        } catch (IncompleteFormException | NotValidPaymentDataException | InsufficientBalanceException | ConnectException e) {
-            fail("An exception was thrown");
-        }
-    }
-
-    @Test
-    void testObtainCertificate() {
-        // This method throws exceptions, so we need to handle them in our test
-        try {
-            platform.setCitizen(testCitizen);
-            platform.setGoal(testGoal);
-            platform.setDigSign(testSignature);
-            platform.setCrimConvs(testConvictions);
-            platform.obtainCertificate();
-            assertTrue(true); // If no exceptions were thrown, the test passed
-        } catch (BadPathException | DigitalSignatureException | ConnectException e) {
-            fail("An exception was thrown");
-        }
-    }
-
-    @Test
-    void testPrintDocument() {
-        // This method throws exceptions, so we need to handle them in our test
-        try {
-            platform.printDocument();
-            assertTrue(true); // If no exceptions were thrown, the test passed
-        } catch (BadPathException | PrintingException e) {
-            fail("An exception was thrown");
-        }
+        platform.enterCardData(cardData);
+        platform.obtainCertificate();
+        // Verify that certificate was obtained
+        verify(justiceMinistry).getCriminalRecordCertf(citizen, goal);
     }
 }
