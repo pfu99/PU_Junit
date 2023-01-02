@@ -1,9 +1,11 @@
 package publicadministration;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class CrimConvictionsColl { // Represents the total criminal convictions registered for a citizen
     private final Map<Date, CrimConviction> conviction;// Its components, that is, the set of criminal convictions
+    private BigDecimal price;
     public CrimConvictionsColl (){
         this.conviction = new HashMap<>();
     } // Initializes the object
@@ -19,6 +21,12 @@ public class CrimConvictionsColl { // Represents the total criminal convictions 
         return conviction;
     }
     // Gets a specific criminal conviction by date
+
+
+    public BigDecimal getPrice() {
+        return this.price;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
