@@ -136,9 +136,9 @@ public class UnifiedPlatform {
     // Other input events (not required)
     public void enterCred (Nif nif, Password passw) throws
             NifNotRegisteredException, NotValidCredException,
-            AnyMobileRegisteredException, ConnectException{
+            AnyMobileRegisteredException, ConnectException, NotValidPINException {
         certificationAuthority.ckeckCredent(nif, passw);
-        //enterPIN(certificationAuthority.ckeckCredent(nif, passw));
+        enterPIN(certificationAuthority.ckeckCredent(nif, passw));
 
     }
 
