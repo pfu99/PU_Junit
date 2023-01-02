@@ -72,13 +72,18 @@ public class UnifiedPlatform {
             ConnectException {
         if (this.certificationAuthority.checkPIN(citizen.getNif(), pin))
             System.out.println("PIN checked correctly");
+        else
+            throw new NotValidPINException("The entered PIN is not valid");
     }
+
     private void enterForm(Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException,
             ConnectException {
         if (citz == null || goal == null)
             throw new IncompleteFormException("Please fill all the required fields in the form");
         if (!gpd.verifyData(citz, goal))
             throw new IncorrectVerificationException("The DGP could not verify the entered information");
+        this.citizen = citz;
+        this.goal = goal;
     }
 
     private void realizePayment() {
@@ -90,10 +95,11 @@ public class UnifiedPlatform {
         if (cardD == null) {
             throw new IncompleteFormException("Credit card information is missing");
         }
-        CardPayment cardPayment = new CardPayment(citizen.getNif(), new BigDecimal(5));
+        CardPayment cardPayment = new CardPayment(citizen.getNif(), crimConvs.getPrice());
         if (!cas.askForApproval(cardPayment.getReference(), cardD, cardPayment.getDate(), cardPayment.getImportValue())) {
             throw new NotValidPaymentDataException("Credit card information is incorrect");
         }
+        this.cardData = cardD;
     }
 
     private void obtainCertificate () throws BadPathException, DigitalSignatureException, ConnectException {
