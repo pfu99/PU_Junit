@@ -1,5 +1,7 @@
 package data;
 
+import exceptions.BadFormatGoalException;
+
 final public class Goal {
     private final String goal;
     public Goal (String code) throws BadFormatGoalException {

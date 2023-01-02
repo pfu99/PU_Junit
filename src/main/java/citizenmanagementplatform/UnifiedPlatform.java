@@ -22,7 +22,7 @@ public class UnifiedPlatform {
     private DigitalSignature digSign;
     private CrimConvictionsColl crimConvs;
     private CertificationAuthority certificationAuthority;
-    private Object authMethod;
+    AuthenticationMethod authMethod;
     private GPD gpd;
     private CAS cas;
     private JusticeMinistry justiceMinistry;
@@ -33,32 +33,27 @@ public class UnifiedPlatform {
         this.cardData = null;
         this.digSign = null;
         this.crimConvs = null;
+        this.authMethod = null;
     }
 
     // Input events
     public void selectJusMin() {
         System.out.println("Entering to Ministerio de Justicia");
     }
-    ;
 
     public void selectProcedures() {
         System.out.println("Selected Trámites");
     }
 
-    ;
-
     public void selectCriminalReportCertf() {
         System.out.println("Procedure selected for obtaining a Criminal Report");
     }
-
-    ;
 
     public void selectAuthMethod(byte opc) {
         this.authMethod = AuthenticationMethod.valueOf(opc);
         System.out.println("Showing authentication form");
     }
 
-    ;
 
     public void enterNIFandPINobt(Nif nif, Date valDate)
             throws NifNotRegisteredException, IncorrectValDateException,
@@ -72,7 +67,7 @@ public class UnifiedPlatform {
         if (this.certificationAuthority.checkPIN(citizen.getNif(), pin))
             System.out.println("PIN checked correctly");
     }
-    private void enterForm(Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException,
+    void enterForm(Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException,
             ConnectException {
         if (citz == null || goal == null)
             throw new IncompleteFormException("Please fill all the required fields in the form");
@@ -80,11 +75,11 @@ public class UnifiedPlatform {
             throw new IncorrectVerificationException("The DGP could not verify the entered information");
     }
 
-    private void realizePayment() {
+    void realizePayment() {
         System.out.println("Ready to pay");
     }
 
-    private void enterCardData(CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException,
+    void enterCardData(CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException,
             InsufficientBalanceException, ConnectException {
         if (cardD == null) {
             throw new IncompleteFormException("Credit card information is missing");
@@ -95,11 +90,11 @@ public class UnifiedPlatform {
         }
     }
 
-    private void obtainCertificate () throws BadPathException, DigitalSignatureException, ConnectException {
+    void obtainCertificate() throws BadPathException, DigitalSignatureException, ConnectException {
         justiceMinistry.getCriminalRecordCertf(citizen, goal);
     }
 
-    private void printDocument () throws BadPathException,
+    void printDocument() throws BadPathException,
     PrintingException{
 
     }
