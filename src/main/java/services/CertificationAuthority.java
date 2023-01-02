@@ -1,6 +1,7 @@
 package services;
 
 import data.Nif;
+import data.Password;
 import data.SmallCode;
 import exceptions.*;
 
@@ -13,4 +14,8 @@ public interface CertificationAuthority {// External service that represents the
             ConnectException;
     boolean checkPIN (Nif nif, SmallCode pin) throws NotValidPINException,
             ConnectException;
+    byte ckeckCredent (Nif nif, Password passw) throws
+            NifNotRegisteredException, NotValidCredException,
+            AnyMobileRegisteredException, ConnectException;
+
 }

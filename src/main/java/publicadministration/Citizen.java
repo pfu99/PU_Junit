@@ -8,6 +8,8 @@ public class Citizen {
     private final String name;
     private final String address;
     private final String mobileNumber;
+    private PDFDocument document;
+
 
     public Citizen (Nif nif, String name, String address, String mobileNumber) {
         this.nif = nif;
@@ -30,6 +32,14 @@ public class Citizen {
 
     public String getMobileNumber() {
         return mobileNumber;
+    }
+
+    public PDFDocument getDocument() {
+        return document;
+    }
+
+    public void setDocument(PDFDocument document) {
+        this.document = document;
     }
 
     @Override

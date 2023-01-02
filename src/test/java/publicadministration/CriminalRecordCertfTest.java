@@ -3,7 +3,6 @@ package publicadministration;
 import data.DigitalSignature;
 import data.Goal;
 import data.Nif;
-import exceptions.BadFormatGoalException;
 import exceptions.BadFormatNifException;
 import exceptions.BadFormatSignatureException;
 import exceptions.BadPathException;
